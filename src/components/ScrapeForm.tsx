@@ -10,7 +10,7 @@ interface ScrapeFormProps {
 }
 
 export function ScrapeForm({ onScrapeComplete }: ScrapeFormProps) {
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState('https://web-scraping.dev/products');
   const [result, setResult] = useState<ScrapeResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -50,7 +50,7 @@ export function ScrapeForm({ onScrapeComplete }: ScrapeFormProps) {
           value={url}
           onChange={(e) => setUrl(e.currentTarget.value)}
           placeholder="https://web-scraping.dev/products"
-          disabled={loading}
+          disabled={true}
           required
         />
         <Button type="submit" variant="destructive" disabled={loading}>
@@ -68,7 +68,6 @@ export function ScrapeForm({ onScrapeComplete }: ScrapeFormProps) {
         <div className="space-y-2">
           <div className="rounded bg-green-50 p-3 text-sm text-green-700">
             ✓ Scraped {result.data?.length || 0} items at{' '}
-            {new Date(result.scrapedAt).toLocaleString()}
           </div>
           <details className="rounded border border-gray-200 p-3">
             <summary className="cursor-pointer font-semibold">

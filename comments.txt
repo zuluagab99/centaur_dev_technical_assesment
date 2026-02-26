@@ -1,0 +1,6 @@
+Assumptions and Tradeoffs:
+
+- **Framework Choice:** I decided to build this using Next.js with an API route and Server-Side Rendering (SSR) functionality. The tradeoff is that it bundles both the frontend and scraper API into one repository, which makes setup faster but might not scale as seamlessly if the frontend and scraping workers needed to be scaled independently.
+- **Error Handling & Selectors:** Currently, the scraping logic waits for specific CSS selectors. The assumption is that the target site structure (web-scraping.dev) remains fairly static. I chose simple CSS selectors for quick implementation, but the tradeoff is brittleness if the source HTML changes down the road.
+
+

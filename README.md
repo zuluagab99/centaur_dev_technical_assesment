@@ -4,33 +4,41 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 First, run the development server:
 
-```bash
+   ```bash
 npm run dev
 # or
 yarn dev
 # or
-pnpm dev
+   pnpm dev
 # or
 bun dev
-```
+   ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+#### Q&A
 
-## Learn More
+1. A scraper that worked reliably suddenly starts failing. How do you debug and stabilize it?
 
-To learn more about Next.js, take a look at the following resources:
+The first thinng I would do is to isolate the failure type (network, parsing or bot detection), inspect for site structure changes, add verbose logging and screenshots, then stabilize with explicit waits and retry logic.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Playwright tests pass locally but fail in CI. What do you investigate?
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+It's always nice to check the depencies, if it's dockerized, check the dockerfile, if it's not, check the absent env vars, network egress restrictions, or viewport differences
 
-## Deploy on Vercel
+3. How do you approach bot detection ethically and technically?
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Always is important to check the terms of service of the website to be scrapped, there are a lot of things like the data ownership and the usage for this
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. What would you refactor/improve if you had more time?
+
+Nice to have:
+- Database to store the scraped data
+- Queue to handle the scraping jobs
+- Dashboard to monitor the scraping process
+
+5. How would you scale this to scraper 100+ sites?
+
+Chang the script to use a queue to handle the scraping jobs, maybe improve the selectors, add a and a dashboard to monitor the scraping process.
+

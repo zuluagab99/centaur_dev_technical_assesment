@@ -33,7 +33,6 @@ export async function POST(req: NextRequest) {
 
       const result: ScrapeResult = {
         url,
-        scrapedAt: new Date(),
         data,
         errors: [],
       };

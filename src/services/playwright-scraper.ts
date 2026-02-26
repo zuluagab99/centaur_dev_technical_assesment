@@ -27,12 +27,16 @@ export class PlaywrightScraper implements WebScraper<Product[]> {
   }
 
   async extractData(): Promise<Product[]> {
+
+    const now = new Date();
+    const formattedDate = now.toISOString();
+
     if (!this.page) throw new Error('Page not initialized');
 
     // Wait for product rows to appear (web-scraping.dev format)
     await this.page.waitForSelector('div.row.product', { timeout: 30000 });
 
-    const products = await this.page.$$eval('div.row.product', (rows) => {
+    const products = await this.page.$$eval('div.row.product', (rows, date) => {
       return rows.map(row => {
         const titleEl = row.querySelector('h3.mb-0 > a');
         const priceEl = row.querySelector('.price-wrap .price');
@@ -44,16 +48,17 @@ export class PlaywrightScraper implements WebScraper<Product[]> {
           price: priceEl ? priceEl.textContent?.trim() ?? null : null,
           description: descEl ? descEl.textContent?.trim() ?? null : null,
           image: imgEl ? imgEl.getAttribute('src') : null,
+          scrapedAt: date,
         };
       });
-    });
+    }, formattedDate);
 
     return products;
   }
 
   async paginate(): Promise<boolean> {
     if (!this.page) throw new Error('Page not initialized');
-    // TODO: Implement pagination logic
+
     return false;
   }
 

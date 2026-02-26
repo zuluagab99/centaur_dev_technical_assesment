@@ -14,11 +14,11 @@ export interface Product {
   price: string | null;
   description: string | null;
   image: string | null;
+  scrapedAt: string | null;
 }
 
 export interface ScrapeResult<T = Product[]> {
   url: string;
-  scrapedAt: Date;
   data: T;
   errors: string[];
 }

@@ -1,0 +1,11 @@
+#services dependencies
+Playwright==1.58.2
+#app dependencies
+Next.js==16.1.6
+React==19.2.3
+React-DOM==19.2.3
+#shadcn ui
+TailwindCSS==4.0.0
+Radix-UI/React-Slot==1.2.4
+Class-Variance-Authority==0.7.1
+Lucide-React==0.575.0
