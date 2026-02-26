@@ -40,5 +40,5 @@ Nice to have:
 
 5. How would you scale this to scraper 100+ sites?
 
-Chang the script to use a queue to handle the scraping jobs, maybe improve the selectors, add a and a dashboard to monitor the scraping process.
+Change the script to use a queue to handle the scraping jobs, maybe improve the selectors, move the service to a separate infrastructure so it's independent from the frontend, and a dashboard/instrumentation to monitor the scraping process.
 
